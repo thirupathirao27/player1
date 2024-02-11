@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			width: 100%;
+			height: 100vh;
+			background: url('images/mouse.gif') no-repeat;
+			background-size: 100% 100%;
+		}
+
+		#addSong {
+
+			text-align: center;
+			font-size: 30px;
+			font-weight: bold;
+			font-family: cursive;
+			cursor: pointer;
+			color: white;
+		}
+
+		.container {
+			width: 350px;
+			height: 450px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+
+		}
+
+		#displayMsg {
+			color: white;
+			position:absolute;
+			left:50%;
+			top:50%;
+			transform:translate(-50%,-50%);
+			text-align: center;
+			
+		
+		}
+		#displayMsg > p{
+			color:white;
+			font-size:30px;
+			font-weight:bold;
+			font-family:cursive;
+			color:cyan;
+			text-shadow:0px 0px 25px cyan,0px 0px 50px cyan,0px 0px 75px cyan;
+		}
+
+		.songContainer {
+			width: 100%;
+			height: 100%;
+			background-color: #777;
+			display: none;
+			animation: openClose 1s;
+		}
+
+		@keyframes openClose {
+			0% {
+				opacity: 0.4;
+				transform: translate(0, -50%);
+			}
+
+			50% {
+				opacity: 0.6;
+				transform: translate(0, 30%);
+			}
+
+			100% {
+				opacity: 1;
+				transform: none;
+			}
+		}
+
+		.image_conatainer {
+			width: 100%;
+			height: 50%;
+			background: url('images/playgif.gif') no-repeat;
+			background-size: 100% 100%;
+			position: relative;
+		}
+
+		.songContainer>form {
+			width: 100%;
+			height: 50%;
+			display: flex;
+			justify-content: space-evenly;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		#songName {
+			width: 70%;
+			height: 50px;
+			border-radius: 200px;
+			font-size: 20px;
+			font-weight: bold;
+			padding-left: 30px;
+			border: 0;
+			outline: 0;
+		}
+
+		#uploadFile {
+			height: 50px;
+			font-size: 20px;
+			font-weight: bold;
+			font-family: cursive;
+			margin-left: 220px;
+			background: transparent;
+
+		}
+
+		#submitBtn {
+			width: 40%;
+			height: 50px;
+			border-radius: 200px;
+			font-weight: bold;
+			font-family: cursive;
+			font-size: 20px;
+			border: 0;
+			outline: 0;
+			color: #999;
+			background-color: cyan;
+			transition: 1s;
+		}
+
+		#submitBtn:hover {
+			color: black;
+			box-shadow: 0px 0px 25px cyan, 0px 0px 50px cyan;
+			text-shadow: 0px 0px 25px #777, 0px 0px 50px #777;
+		}
+
+		#submitBtn:active {
+
+			transform: scale(0.8);
+		}
+
+		.displayAddSong {
+			display: block;
+		}
+		#gotoPlayer{
+			position:absolute;
+			top:-70px;
+			left:150px;
+			width:50px;
+			height:50px;
+			
+		}
+		#gotoPlayer img{
+			
+			width:100%;
+			height:100%;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<div id="gotoPlayer"><a href="player"><img src="images/home.png"></a></div>
+		<div id="addSong"><span>AddSong</span></div>
+		<div class="songContainer" id="songContainer">
+			<div class="image_conatainer"></div>
+			<form  action="addSongC" enctype="multipart/form-data" method="post">
+				<input id="songName" type="text" placeholder="Enter the song name" name="sName">
+				<input id="uploadFile" type="file" name="songFiles">
+				<input id="submitBtn" type="submit" value="addSong+">
+			</form>
+		</div>
+	</div>
+	<div id="displayMsg">
+		<p th:text="${status}" ></p>
+	</div>
+	<script>
+		let addSong = document.getElementById('addSong');
+		let container = document.querySelector('.songContainer');
+		addSong.onclick = function () {
+			container.classList.toggle('displayAddSong')
+		}
+		let displayMsg = document.querySelector('#displayMsg');
+		setTimeout(()=>{
+			displayMsg.style.diplay = 'none';
+		},300);
+	</script>
+</body>
+
+</html>

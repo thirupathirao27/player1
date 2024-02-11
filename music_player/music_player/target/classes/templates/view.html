@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		body {
+
+			width: 100vw;
+			height: 100vh;
+			background-image: linear-gradient(to bottom right, #38A2D7, #561139);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+		}
+
+		.play_List{
+			width:300px;
+			height:500px;
+			background-color:#999;
+		}
+		table{
+			width:100%;
+			height:100%;
+			display:flex;
+		    justify-content:space-evenly;
+		    align-items:center;
+		}
+		tr{
+			width:100%;
+			height:20%;
+		    cursor:pointer;
+		    font-size:20px;
+		    font-weight:bold;
+		    font-style:italic;
+		    border:3px solid black;
+		}
+		
+	</style>
+</head>
+
+<body>
+
+	<div class="play_List">
+	
+			<table>
+				<tr th:each="e :${al}">
+					<td th:text="${e}"></td>
+					<td>
+						<form action="/playFromView">
+							<input th:value="${e}" hidden name="song">
+							<input type="submit" value="play">
+						</form>
+					</td>
+					<td>
+						<form action="/deleteSong">
+							<input th:value="${e}" hidden name="song">
+							<input type="submit" value="delete">
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+	
+	</div>
+
+</body>
+
+</html>

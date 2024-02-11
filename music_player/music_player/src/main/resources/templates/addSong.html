@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+          
+            background-image:linear-gradient(280deg,#e55d87,#5fc3e4);
+        }
+        #container{
+            width:100%;
+            height:85vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        form{
+            width:30vw;
+            height:70vh;
+            background-image:linear-gradient(#ff512f,#dd2476);
+            border-radius:10px;
+            box-shadow:2px 2px 2px 3px black;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-evenly;
+            align-items:center;
+        }
+        #songName,#files,#button{
+            width:25vw;
+            height:6vh;
+            font-size:20px;
+            text-align:center;
+            font-family:cursive;
+            font-style: italic;
+            font-weight:bold;
+            border:0px;
+            outline:0px;
+        }
+        #songName{
+            border-radius:200px;
+            background-color:transparent;
+            box-shadow: 2px 2px 2px 2px black;
+            color:blue;
+        }
+        #files{
+            width:8vw;
+            height:8vh;
+        }
+      #button{
+        width:8vw;
+        height:7vh;
+        border-radius:200px;
+        background-color:green;
+        color:white;
+        box-shadow:2px 2px 2px 2px black;
+      }
+      #button:active{
+        transform:scale(0.9);
+      }
+      #header{
+        width:100%;
+        height:15vh;
+        background:transparent;
+        display:flex;
+        justify-content:space-evenly;
+        align-items:center;
+      }
+      li{
+        width:5vw;
+        height:10vh;
+        /* border-radius:100%; */
+        list-style-type: none;
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+        filter:drop-shadow(3px 5px 2px  black);
+        
+      }
+      #visible{
+        background-image:url('images/visible.png');
+      }
+      #home{
+        background-image:url('images/home.png');
+      }
+     #playButt{
+        background-image:url('images/play-button.png');
+     }
+     p{
+		 font-size:20px;
+		 font-family:cursive;
+		 font-style: italic;
+		 font-weight:bold;
+		 color:bold;
+	 }
+     
+    </style>
+</head>
+<body>
+    <ul id="header"><a href="viewSongs"><li id="visible"></li></a>
+   <a href="index"> <li id="home"></li></a>
+   <a href="player"><li id="playButt"></li></a>
+    </ul>
+    <div id="container">
+   <form   action="addSongC" enctype="multipart/form-data" method="post">
+     <input placeholder="enter the song name" id="songName" name="sName">
+     <input type="file" id="files" name="songFiles">
+     <a><p th:text="${status}"></p></a>
+     <input type="submit" value="addSong+" id="button">
+   </form>
+
+    </div>
+</body>
+
+</html>
